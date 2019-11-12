@@ -1,4 +1,4 @@
-tests:
+maven_taf:
   image: maven:3
   stop_signal: SIGKILL
   stdin_open: true
