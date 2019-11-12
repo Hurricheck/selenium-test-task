@@ -24,7 +24,8 @@ public class WebDriverFactory {
         if ("google_chrome".equals(browser)) {
             System.setProperty(CHROME_PROPERTY, TestUtil.getPropertyValue("path.chromedriver"));
             ChromeOptions chromeOptions = new ChromeOptions();
-            chromeOptions.addArguments("--window-size=1280,800","--headless","--no-sandbox", "--single-process", "--disable-gpu");
+            chromeOptions.addArguments("--window-size=1600,800","--headless","--no-sandbox", "--single-process");
+            chromeOptions.addArguments("--allow-insecure-localhost");
             driver = new ChromeDriver(chromeOptions);
         } else if ("firefox".equals(browser)) {
         	System.setProperty("webdriver.gecko.driver", TestUtil.getPropertyValue("path.geckodriver"));

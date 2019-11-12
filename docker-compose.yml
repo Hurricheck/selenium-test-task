@@ -5,6 +5,7 @@ tests:
   tty: true
   working_dir: $PWD
   volumes:
+    - /dev/shm:/dev/shm
     - $PWD:$PWD
     - /var/run/docker.sock:/var/run/docker.sock
     # Maven cache (optional)
@@ -14,6 +15,7 @@ tests:
     && apt-get upgrade
     && apt -f install
     && apt-get -y install libxi6 libgconf-2-4 libxss1 libnss3-dev libcurl3 fonts-liberation libappindicator3-1 libasound2 libatk-bridge2.0-0 libatk1.0-0 libatspi2.0-0 libcairo2 libcups2 libgdk-pixbuf2.0-0 libgtk-3-0 libpango-1.0-0 lsb-release xdg-utils
+    && rm -rf google-chrome-stable_current_amd64.deb
     && wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
     && dpkg -i google-chrome-stable_current_amd64.deb
     && apt-get -fy install
