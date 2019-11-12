@@ -2,7 +2,7 @@
 Selenium TAF sample.
 Currenty configured for Linux+Chrome only with headless mode.
 
-In order to disable headless, remove the corresponding argument at the WebDriverFactory.java.
+In order to disable headless, remove the webdriver.headless property at .properties file.
 
 However, this may cause TAF crash when run via docker-compose.
 
