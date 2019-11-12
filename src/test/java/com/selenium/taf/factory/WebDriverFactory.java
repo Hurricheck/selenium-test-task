@@ -17,15 +17,20 @@ import java.util.concurrent.TimeUnit;
 
 public class WebDriverFactory {
     private static final String CHROME_PROPERTY = "webdriver.chrome.driver";
+    private static final String HEADLESS_PROPERTY = "webdriver.headless";
+    private static final String CHROME_PATH_PROPERTY = "path.chromedriver";
 
     private static WebDriver driver;
 
     public static WebDriver getWebDriver(String browser) {
         if ("google_chrome".equals(browser)) {
-            System.setProperty(CHROME_PROPERTY, TestUtil.getPropertyValue("path.chromedriver"));
+            System.setProperty(CHROME_PROPERTY, TestUtil.getPropertyValue(CHROME_PATH_PROPERTY));
             ChromeOptions chromeOptions = new ChromeOptions();
-            chromeOptions.addArguments("--window-size=1600,800","--headless","--no-sandbox", "--single-process");
+            chromeOptions.addArguments("--window-size=1600,800","--no-sandbox", "--single-process");
             chromeOptions.addArguments("--allow-insecure-localhost");
+            if (TestUtil.getPropertyValue(HEADLESS_PROPERTY ).equals("true")) {
+                chromeOptions.addArguments("--headless");
+            }
             driver = new ChromeDriver(chromeOptions);
         } else if ("firefox".equals(browser)) {
         	System.setProperty("webdriver.gecko.driver", TestUtil.getPropertyValue("path.geckodriver"));
